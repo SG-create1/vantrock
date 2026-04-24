@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vantrock — India's First Independent Real Assets Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A1220; --navy:#0E1828; --navy-mid:#142238; --slate:#1B2A4A;
+  --gold:#D4A843; --gold-deep:#B8902F; --sand:#C4B599;
+  --chalk:#F2ECDD; --bone:#EFEADD; --paper:#F7F4ED;
+  --limestone:#B8C3D4; --graphite:#3A424E; --dust:#8B9BB5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;font-weight:400;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+svg,img{display:block;max-width:100%}
+em{font-style:italic}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rgba(14,24,40,0.8);backdrop-filter:blur(18px);border-bottom:1px solid rgba(212,168,67,0.14);transition:padding .3s,background .3s}
+.nav.scrolled{padding:14px 0;background:rgba(10,18,32,0.92)}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:400;font-size:18px;letter-spacing:3px;color:var(--chalk)}
+.nav-logo .v{color:var(--gold);font-weight:500}
+.nav-links{display:flex;gap:28px;align-items:center;flex-wrap:nowrap}
+.nav-links a{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--limestone);font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{padding:10px 18px;border:1px solid var(--gold);color:var(--gold)!important}
+.nav-cta:hover{background:var(--gold);color:var(--ink)!important}
+@media(max-width:1180px){.nav-links{gap:20px}.nav-links a{font-size:10px;letter-spacing:1.5px}.nav-cta{padding:8px 14px}}
+@media(max-width:980px){.nav-links{gap:16px}}
+@media(max-width:860px){.nav-links{display:none}.nav-inner{padding:0 20px}}
+
+/* WRAP */
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+@media(max-width:720px){.wrap{padding:0 20px}}
+
+/* TYPE */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.eyebrow .bar{width:36px;height:1px;background:var(--gold)}
+.h1{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(40px,5.2vw,76px);line-height:1.04;letter-spacing:-0.02em;color:var(--ink)}
+.h1 em{color:var(--gold-deep);font-weight:400}
+.h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,3vw,44px);line-height:1.12;letter-spacing:-0.015em}
+.h3{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(22px,2vw,30px);line-height:1.2;letter-spacing:-0.01em}
+.lead{font-size:clamp(16px,1.2vw,18px);line-height:1.72;color:var(--graphite);font-weight:300;max-width:62ch}
+.dark .h1,.dark .h2,.dark .h3{color:var(--chalk)}
+.dark .h1 em,.dark .h2 em,.dark .h3 em{color:var(--gold)}
+.dark .lead{color:var(--limestone)}
+.dark .eyebrow{color:var(--gold)}
+.dark .eyebrow .bar{background:var(--gold)}
+
+/* SECTION */
+section{padding:120px 0}
+section.tight{padding:90px 0}
+section.dark{background:var(--navy);color:var(--chalk)}
+section.deep{background:var(--ink);color:var(--chalk)}
+section.bone{background:var(--bone)}
+
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;margin-bottom:72px;align-items:end;padding-bottom:32px;border-bottom:1px solid rgba(27,42,74,0.14)}
+.dark .sec-head,.deep .sec-head{border-bottom-color:rgba(212,168,67,0.2)}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:28px}}
+.sec-head .lead{max-width:440px}
+
+/* BTN */
+.btn-line{display:inline-flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--gold);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:500;transition:padding .25s;cursor:pointer}
+.btn-line:hover{padding-right:8px}
+.btn-line .arr{font-family:'Playfair Display',serif;font-size:15px}
+.btn-dark{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.r-d1{transition-delay:.08s}.r-d2{transition-delay:.16s}.r-d3{transition-delay:.24s}.r-d4{transition-delay:.32s}.r-d5{transition-delay:.4s}
+
+/* ═══════ HERO ═══════ */
+.hero{position:relative;min-height:100vh;background:var(--ink);color:var(--chalk);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding-top:120px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(27,42,74,0.6) 0%,var(--ink) 70%),linear-gradient(180deg,var(--slate) 0%,var(--navy) 50%,var(--ink) 100%)}
+.hero-bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(to right,rgba(212,168,67,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(212,168,67,0.04) 1px,transparent 1px);background-size:80px 80px}
+.hero-content{position:relative;z-index:2;padding:60px 0 40px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.hero-meta{display:flex;gap:14px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--sand);margin-bottom:56px;flex-wrap:wrap}
+.hero-meta .bar{width:36px;height:1px;background:var(--gold)}
+.hero-meta .dot{color:var(--gold)}
+.hero-meta b{color:var(--chalk);font-weight:500;letter-spacing:2.5px}
+.hero-h{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(44px,7.5vw,112px);line-height:0.98;letter-spacing:-0.028em;color:var(--chalk);max-width:17ch;margin-bottom:56px}
+.hero-h em{color:var(--gold);font-weight:400;font-style:italic}
+.hero-two{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;padding-top:40px;border-top:1px solid rgba(212,168,67,0.2);align-items:start}
+@media(max-width:820px){.hero-two{grid-template-columns:1fr;gap:32px}}
+.hero-sub{font-size:clamp(15px,1.15vw,17.5px);line-height:1.72;color:var(--limestone);font-weight:300;max-width:500px}
+.hero-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.hero-foot{position:relative;z-index:2;border-top:1px solid rgba(212,168,67,0.18);background:rgba(10,18,32,0.72);backdrop-filter:blur(10px)}
+.hero-foot-inner{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:24px 0}
+@media(max-width:860px){.hero-foot-inner{grid-template-columns:repeat(2,1fr);gap:20px 0}}
+.hf-stat{padding:4px 28px;border-left:1px solid rgba(212,168,67,0.14)}
+.hf-stat:first-child{border-left:none}
+.hf-stat .n{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(22px,2.2vw,30px);color:var(--gold);letter-spacing:-0.01em;line-height:1}
+.hf-stat .l{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sand);font-weight:500;margin-top:8px;display:block}
+
+/* ═══════ NAME · VISION · VALUES ═══════ */
+.name-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+@media(max-width:960px){.name-layout{grid-template-columns:1fr;gap:56px}}
+
+.etym{position:relative;padding:56px 48px;border:1px solid rgba(27,42,74,0.14);background:var(--paper)}
+.etym::before{content:"ETYMOLOGY";position:absolute;top:-10px;left:40px;background:var(--paper);padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-deep)}
+.etym-mark{text-align:center;margin-bottom:40px}
+.etym-mark .big{font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,96px);letter-spacing:4px;line-height:1}
+.etym-mark .big .vant{color:var(--gold-deep);font-weight:700}
+.etym-mark .big .rock{color:var(--ink);font-weight:500}
+.etym-mark .rule{width:60px;height:2px;background:var(--gold);margin:20px auto}
+.etym-mark .say{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--graphite);font-weight:400}
+.etym-mark .say b{color:var(--gold-deep);font-weight:500}
+.etym-split{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-top:32px;border-top:1px solid rgba(27,42,74,0.1)}
+@media(max-width:580px){.etym-split{grid-template-columns:1fr;gap:28px}}
+.etym-half .eh-key{font-family:'Playfair Display',serif;font-weight:700;font-size:34px;color:var(--gold-deep);letter-spacing:2px;line-height:1;margin-bottom:6px}
+.etym-half .eh-from{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--graphite);text-transform:uppercase;margin-bottom:14px}
+.etym-half p{font-size:13.5px;line-height:1.7;color:var(--graphite);font-weight:300}
+
+.name-copy h3{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);color:var(--ink);letter-spacing:-0.015em;line-height:1.15;margin-bottom:24px}
+.name-copy h3 em{color:var(--gold-deep);font-style:italic}
+.name-copy p{font-size:15px;line-height:1.75;color:var(--graphite);font-weight:300;margin-bottom:20px;max-width:55ch}
+.name-copy .tag-line{margin-top:36px;padding:24px 28px;background:var(--ink);color:var(--chalk);display:flex;flex-direction:column;gap:14px}
+.name-copy .tag-line .tl-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold)}
+.name-copy .tag-line .tl-v{font-family:'Playfair Display',serif;font-size:clamp(22px,2.4vw,32px);color:var(--chalk);letter-spacing:1px;font-weight:400}
+.name-copy .tag-line .tl-v b{color:var(--gold);font-weight:500}
+.name-copy .tag-line .tl-d{font-size:12.5px;line-height:1.7;color:var(--limestone);font-weight:300}
+
+/* VISION SLAB */
+.vision{margin-top:120px;padding:80px 0;border-top:1px solid rgba(27,42,74,0.14);border-bottom:1px solid rgba(27,42,74,0.14);text-align:center}
+.vision .vs-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:28px}
+.vision .vs-h{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1.35;letter-spacing:-0.01em;color:var(--ink);max-width:24ch;margin:0 auto 28px}
+.vision .vs-h em{color:var(--gold-deep);font-style:italic}
+.vision .vs-s{font-size:15px;line-height:1.75;color:var(--graphite);font-weight:300;max-width:54ch;margin:0 auto}
+.vision-words{display:grid;grid-template-columns:repeat(5,1fr);margin-top:48px;padding-top:32px;border-top:1px dotted rgba(27,42,74,0.2)}
+@media(max-width:720px){.vision-words{grid-template-columns:repeat(2,1fr);gap:24px 0}}
+.vw{padding:0 14px;border-left:1px solid rgba(27,42,74,0.1);text-align:left}
+.vw:first-child{border-left:none}
+@media(max-width:720px){.vw{border-left:none}}
+.vw .vwk{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2px;color:var(--gold-deep);margin-bottom:8px}
+.vw .vwt{font-family:'Playfair Display',serif;font-weight:500;font-size:18px;color:var(--ink);margin-bottom:8px;letter-spacing:-0.005em}
+.vw .vwd{font-size:12px;line-height:1.6;color:var(--graphite);font-weight:300}
+
+/* VALUES GRID */
+.values-head{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:120px;margin-bottom:48px;align-items:end;padding-bottom:28px;border-bottom:1px solid rgba(27,42,74,0.14)}
+@media(max-width:820px){.values-head{grid-template-columns:1fr;gap:24px}}
+.values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(27,42,74,0.12);border:1px solid rgba(27,42,74,0.12)}
+@media(max-width:980px){.values-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.values-grid{grid-template-columns:1fr}}
+.val{padding:36px 26px;background:var(--paper);min-height:260px;display:flex;flex-direction:column;gap:14px;transition:background .3s}
+.val:hover{background:var(--bone)}
+.val .vn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase}
+.val h4{font-family:'Playfair Display',serif;font-weight:400;font-size:22px;color:var(--ink);letter-spacing:-0.005em;line-height:1.2}
+.val p{font-size:13px;line-height:1.7;color:var(--graphite);font-weight:300;flex:1}
+.val .vmeta{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold-deep);padding-top:14px;border-top:1px dotted rgba(27,42,74,0.15);letter-spacing:-0.005em}
+
+/* RESIDENTIAL PLOTTING ALLIED */
+.allied{position:relative;display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:start}
+@media(max-width:980px){.allied{grid-template-columns:1fr;gap:48px}}
+.allied-band{display:inline-flex;align-items:center;gap:10px;padding:6px 12px;border:1px solid rgba(212,168,67,0.5);background:rgba(212,168,67,0.08);color:var(--gold-deep);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:28px}
+.allied-band .dt{width:6px;height:6px;background:var(--gold);display:inline-block;border-radius:50%}
+.allied h3{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,2.8vw,40px);line-height:1.18;letter-spacing:-0.015em;color:var(--ink);margin-bottom:24px;max-width:22ch}
+.allied h3 em{color:var(--gold-deep);font-style:italic}
+.allied p{font-size:15px;line-height:1.78;color:var(--graphite);font-weight:300;margin-bottom:18px;max-width:56ch}
+.allied p em{color:var(--gold-deep);font-style:italic}
+.allied .ac-rule{width:40px;height:2px;background:var(--gold);margin:8px 0 28px}
+.allied-pull{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--gold-deep);max-width:48ch;margin-top:24px;line-height:1.5}
+.allied-why{padding:40px;background:var(--paper);border:1px solid rgba(27,42,74,0.12);border-left:3px solid var(--gold)}
+.allied-why .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold-deep);margin-bottom:14px;text-transform:uppercase}
+.allied-why ul{list-style:none;padding:0;margin:0}
+.allied-why li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-bottom:1px dotted rgba(27,42,74,0.18);font-size:14px;line-height:1.65;color:var(--graphite);font-weight:300}
+.allied-why li:last-child{border-bottom:none}
+.allied-why li b{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--gold-deep);padding-top:3px}
+.allied-why li em{color:var(--ink);font-style:normal;font-weight:500}
+.allied-not{margin-top:64px;padding:40px;background:var(--ink);color:var(--limestone);text-align:center}
+.allied-not .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:16px}
+.allied-not .q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,1.9vw,26px);color:var(--chalk);line-height:1.45;max-width:42ch;margin:0 auto;letter-spacing:-0.005em}
+.allied-not .q em{color:var(--gold);font-style:italic}
+
+/* ═══════ THESIS ═══════ */
+.thesis-3{display:grid;grid-template-columns:repeat(3,1fr);gap:64px;margin-bottom:72px}
+@media(max-width:900px){.thesis-3{grid-template-columns:1fr;gap:40px}}
+.t-col{padding-top:24px;position:relative}
+.t-col::before{content:"";position:absolute;top:0;left:0;width:44px;height:2px;background:var(--gold-deep)}
+.t-col .tn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-deep);margin-bottom:18px;display:block}
+.t-col h4{font-family:'Playfair Display',serif;font-weight:400;font-size:24px;line-height:1.2;margin-bottom:18px;color:var(--ink)}
+.t-col p{font-size:15px;line-height:1.75;color:var(--graphite);font-weight:300}
+.t-col .sn{margin-top:24px;padding-top:18px;border-top:1px solid rgba(27,42,74,0.1);display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--graphite);letter-spacing:1.5px;text-transform:uppercase}
+.t-col .sn b{font-family:'Playfair Display',serif;font-weight:400;color:var(--gold-deep);font-size:24px;letter-spacing:-0.01em}
+
+/* FIVE FORCES strip */
+.forces{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(27,42,74,0.12);border:1px solid rgba(27,42,74,0.12);margin-top:40px}
+@media(max-width:900px){.forces{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.forces{grid-template-columns:1fr}}
+.force{padding:32px 24px;background:var(--paper)}
+.force .fn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:16px}
+.force h5{font-family:'Playfair Display',serif;font-weight:400;font-size:28px;color:var(--ink);letter-spacing:-0.015em;line-height:1;margin-bottom:10px}
+.force .fl{font-size:11px;letter-spacing:2px;color:var(--gold-deep);text-transform:uppercase;font-weight:600;margin-bottom:12px}
+.force p{font-size:13px;line-height:1.6;color:var(--graphite);font-weight:300}
+
+/* ═══════ PLATFORM ═══════ */
+.cap-list{border-top:1px solid rgba(212,168,67,0.2)}
+.cap-row{display:grid;grid-template-columns:80px 1fr 2.4fr 180px;gap:40px;padding:36px 0;border-bottom:1px solid rgba(212,168,67,0.15);align-items:baseline;position:relative;transition:padding .35s cubic-bezier(.2,.8,.2,1)}
+.cap-row::before{content:"";position:absolute;inset:0;background:rgba(212,168,67,0.04);width:0;transition:width .35s}
+.cap-row:hover{padding-left:20px;padding-right:20px}
+.cap-row:hover::before{width:100%}
+.cap-row>*{position:relative;z-index:1}
+.cap-n{font-family:'Playfair Display',serif;color:var(--gold);font-size:15px;letter-spacing:2px}
+.cap-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,2.4vw,34px);color:var(--chalk);letter-spacing:-0.01em;line-height:1.1}
+.cap-body{font-size:14.5px;line-height:1.7;color:var(--limestone);font-weight:300;max-width:540px}
+.cap-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sand);text-align:right}
+.cap-meta b{color:var(--gold);font-weight:500;display:block;margin-bottom:6px;font-size:10.5px}
+@media(max-width:860px){.cap-row{grid-template-columns:60px 1fr;grid-template-rows:auto auto auto;gap:10px 20px}.cap-title{grid-column:2}.cap-body{grid-column:1/-1}.cap-meta{grid-column:1/-1;text-align:left}}
+
+/* ═══════ FORMATS (DATA-LED TABLE) ═══════ */
+.fmt-grid{border-top:1px solid rgba(27,42,74,0.15);border-bottom:1px solid rgba(27,42,74,0.15)}
+.fmt-head{display:grid;grid-template-columns:60px 1.4fr 120px 120px 140px 1fr;gap:24px;padding:18px 0;border-bottom:1px solid rgba(27,42,74,0.1);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-deep)}
+.fmt-row{display:grid;grid-template-columns:60px 1.4fr 120px 120px 140px 1fr;gap:24px;padding:32px 0;border-bottom:1px solid rgba(27,42,74,0.08);align-items:center;transition:background .25s}
+.fmt-row:hover{background:rgba(212,168,67,0.04)}
+.fmt-row:last-child{border-bottom:none}
+.fmt-row .f-n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep)}
+.fmt-row .f-t{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--ink);letter-spacing:-0.01em;line-height:1.15}
+.fmt-row .f-t span{display:block;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:2px;color:var(--gold-deep);text-transform:uppercase;margin-top:6px;font-weight:500}
+.fmt-row .f-d{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:500}
+.fmt-row .f-d span{display:block;font-size:9.5px;color:var(--graphite);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;font-weight:400}
+.fmt-row .f-desc{font-size:13.5px;line-height:1.65;color:var(--graphite);font-weight:300}
+@media(max-width:980px){.fmt-head{display:none}.fmt-row{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:16px;padding:28px 0}.fmt-row .f-n{grid-column:1/-1;color:var(--gold-deep);font-size:10px}.fmt-row .f-t{grid-column:1/-1}.fmt-row .f-desc{grid-column:1/-1}}
+
+/* SPECTRUM BAR */
+.spectrum{margin-top:64px;padding:40px 0;border-top:1px solid rgba(27,42,74,0.12);border-bottom:1px solid rgba(27,42,74,0.12)}
+.spectrum-title{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
+.spectrum-title .h3{color:var(--ink)}
+.spectrum-title .sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);text-transform:uppercase}
+.spec-bar{display:flex;align-items:flex-end;gap:4px;height:80px;margin-bottom:20px}
+.spec-seg{flex:1;background:linear-gradient(180deg,var(--gold-deep) 0%,var(--gold) 100%);position:relative;opacity:0.9;transition:opacity .2s}
+.spec-seg:hover{opacity:1}
+.spec-seg .lbl{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--graphite);text-transform:uppercase}
+.spec-axis{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--graphite);letter-spacing:1.5px;margin-top:32px}
+.spec-axis b{color:var(--gold-deep);font-weight:500}
+
+/* ═══════ SAATHI ═══════ */
+.saathi-intro{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;margin-bottom:72px;align-items:end}
+@media(max-width:900px){.saathi-intro{grid-template-columns:1fr;gap:40px}}
+.saathi-quote{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(22px,2.2vw,30px);line-height:1.35;color:var(--chalk);letter-spacing:-0.005em}
+.saathi-quote em{color:var(--gold);font-style:italic}
+
+.saathi-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(212,168,67,0.22);border:1px solid rgba(212,168,67,0.22);margin-bottom:72px}
+@media(max-width:720px){.saathi-kpi{grid-template-columns:1fr 1fr}}
+.skp{padding:32px 24px;background:var(--navy);text-align:left}
+.skp .n{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(32px,3.4vw,48px);color:var(--gold);letter-spacing:-0.015em;line-height:1;display:block;margin-bottom:12px}
+.skp .l{font-size:10px;letter-spacing:2.5px;color:var(--sand);text-transform:uppercase;font-weight:500;margin-bottom:10px}
+.skp .d{font-size:12px;color:var(--limestone);line-height:1.55;font-weight:300}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,168,67,0.18);border:1px solid rgba(212,168,67,0.18)}
+@media(max-width:820px){.pillars{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.pillars{grid-template-columns:1fr}}
+.pillar{padding:36px 28px;background:var(--navy);display:flex;flex-direction:column;gap:14px;min-height:240px}
+.pillar .pn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold)}
+.pillar h4{font-family:'Playfair Display',serif;font-weight:400;font-size:22px;color:var(--chalk);letter-spacing:-0.005em}
+.pillar p{font-size:13.5px;line-height:1.7;color:var(--limestone);font-weight:300;flex:1}
+.pillar .pm{padding-top:14px;margin-top:6px;border-top:1px dotted rgba(212,168,67,0.22);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--gold)}
+
+/* ═══════ REFURB + RECYCLER ═══════ */
+.engine-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(27,42,74,0.12);border:1px solid rgba(27,42,74,0.12)}
+@media(max-width:820px){.engine-grid{grid-template-columns:1fr}}
+.engine{padding:48px 40px;background:var(--paper)}
+.engine .en{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:20px}
+.engine h3{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);color:var(--ink);margin-bottom:20px;letter-spacing:-0.015em;line-height:1.1}
+.engine p{font-size:14.5px;line-height:1.72;color:var(--graphite);margin-bottom:24px;font-weight:300}
+.engine-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:24px;border-top:1px solid rgba(27,42,74,0.12);margin-top:auto}
+.engine-stats .es{display:flex;flex-direction:column;gap:6px}
+.engine-stats .es .en-n{font-family:'Playfair Display',serif;font-weight:400;font-size:24px;color:var(--gold-deep);letter-spacing:-0.01em;line-height:1}
+.engine-stats .es .en-l{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2px;color:var(--graphite);text-transform:uppercase}
+.engine-list{list-style:none;margin-top:20px}
+.engine-list li{display:flex;gap:16px;padding:10px 0;font-size:13.5px;line-height:1.6;color:var(--graphite);border-bottom:1px dotted rgba(27,42,74,0.12)}
+.engine-list li:last-child{border-bottom:none}
+.engine-list li b{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-deep);letter-spacing:1.5px;min-width:42px;padding-top:2px}
+
+/* ═══════ INTELLIGENCE / 12 AGENTS ═══════ */
+.agents-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(212,168,67,0.2);border:1px solid rgba(212,168,67,0.2)}
+@media(max-width:900px){.agents-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.agents-grid{grid-template-columns:1fr}}
+.agent{padding:24px 22px;background:var(--navy);min-height:140px;display:flex;flex-direction:column;gap:10px;transition:background .25s}
+.agent:hover{background:var(--navy-mid)}
+.agent .a-top{display:flex;justify-content:space-between;align-items:baseline}
+.agent .a-n{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold)}
+.agent .a-s{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#7FD4A3;text-transform:uppercase}
+.agent .a-s .dt{display:inline-block;width:5px;height:5px;background:#7FD4A3;border-radius:50%;margin-right:5px;animation:pulse 2s infinite;vertical-align:middle}
+@keyframes pulse{50%{opacity:.4}}
+.agent h5{font-family:'Playfair Display',serif;font-weight:400;font-size:17px;color:var(--chalk);letter-spacing:-0.005em;line-height:1.2}
+.agent p{font-size:12px;line-height:1.6;color:var(--limestone);font-weight:300}
+
+/* — COCKPIT UPGRADE — */
+.cockpit{border:1px solid rgba(212,168,67,0.22);background:linear-gradient(180deg,#08101C 0%,var(--navy) 100%);margin-top:8px}
+.cockpit-bar{display:grid;grid-template-columns:auto 1fr auto auto auto auto;align-items:center;gap:28px;padding:14px 22px;border-bottom:1px solid rgba(212,168,67,0.18);background:rgba(0,0,0,0.28)}
+.cockpit-bar .cb-brand{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2.5px;color:var(--chalk);text-transform:uppercase}
+.cockpit-bar .cb-brand .dt{width:7px;height:7px;background:#7FD4A3;border-radius:50%;box-shadow:0 0 0 3px rgba(127,212,163,0.15);animation:pulse 2s infinite}
+.cockpit-bar .cb-brand b{color:var(--gold)}
+.cockpit-bar .cb-ticker{overflow:hidden;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--dust);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.cockpit-bar .cb-ticker span{display:inline-block;padding-right:40px;animation:tick 48s linear infinite}
+.cockpit-bar .cb-ticker span em{color:var(--gold);font-style:normal;margin:0 4px}
+.cockpit-bar .cb-ticker span b{color:#7FD4A3;font-weight:400}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cockpit-bar .cb-stat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--dust);text-transform:uppercase;border-left:1px solid rgba(212,168,67,0.2);padding-left:22px;line-height:1.3}
+.cockpit-bar .cb-stat b{display:block;font-size:14px;color:var(--chalk);letter-spacing:0.5px;margin-top:2px;font-weight:500}
+.cockpit-bar .cb-stat b.ok{color:#7FD4A3}
+.cockpit-bar .cb-stat b.gold{color:var(--gold)}
+
+.cockpit-body{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,168,67,0.14)}
+@media(max-width:980px){.cockpit-body{grid-template-columns:1fr}}
+.cockpit-col{background:var(--navy);padding:0}
+.cockpit-col .cc-head{padding:16px 22px;border-bottom:1px solid rgba(212,168,67,0.14);display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.18)}
+.cockpit-col .cc-head .cc-t{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase}
+.cockpit-col .cc-head .cc-c{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dust)}
+
+.a2{display:block;padding:16px 22px;border-bottom:1px solid rgba(212,168,67,0.09);transition:background .2s;cursor:default}
+.a2:last-child{border-bottom:none}
+.a2:hover{background:var(--navy-mid)}
+.a2 .a2-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.a2 .a2-id{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--gold)}
+.a2 .a2-st{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:#7FD4A3;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.a2 .a2-st .dt{width:4px;height:4px;background:#7FD4A3;border-radius:50%;animation:pulse 2s infinite}
+.a2 h6{font-family:'Playfair Display',serif;font-weight:400;font-size:15.5px;color:var(--chalk);letter-spacing:-0.005em;margin-bottom:4px;line-height:1.2}
+.a2 .a2-sub{font-size:11px;line-height:1.5;color:var(--limestone);font-weight:300;margin-bottom:10px;max-width:34ch}
+.a2 .a2-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:8px;border-top:1px dotted rgba(212,168,67,0.16)}
+.a2 .a2-meta .m-l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.3px;color:var(--dust);text-transform:uppercase}
+.a2 .a2-meta .m-v{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--chalk);letter-spacing:0.5px}
+.a2 .a2-meta .m-v.g{color:var(--gold)}
+.a2 .a2-meta .m-v.ok{color:#7FD4A3}
+.a2 .a2-bar{height:2px;background:rgba(212,168,67,0.12);position:relative;margin-top:10px;overflow:hidden}
+.a2 .a2-bar i{position:absolute;top:0;left:0;bottom:0;background:linear-gradient(90deg,var(--gold),#7FD4A3);display:block;animation:barSlide 5s ease-in-out infinite}
+@keyframes barSlide{0%,100%{width:12%;opacity:0.35}50%{width:var(--bar-w,70%);opacity:1}}
+
+.cockpit-feed{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:14px 22px;background:#05090F;border-top:1px solid rgba(212,168,67,0.22);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--limestone);letter-spacing:0.5px}
+.cockpit-feed .cf-k{color:var(--gold);letter-spacing:2px;font-size:10px;text-transform:uppercase}
+.cockpit-feed .cf-log{overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.cockpit-feed .cf-log span{display:inline-block;padding-right:56px;animation:tick 60s linear infinite}
+.cockpit-feed .cf-log span em{color:var(--gold);font-style:normal}
+.cockpit-feed .cf-log span b{color:#7FD4A3;font-weight:400}
+.cockpit-feed .cf-count{color:var(--dust);letter-spacing:1.5px;font-size:9.5px;text-transform:uppercase}
+.cockpit-feed .cf-count b{color:var(--chalk);font-weight:400;padding-left:6px}
+
+/* AI OPS COMPARE */
+.ops-compare{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(212,168,67,0.2);margin-top:56px}
+@media(max-width:720px){.ops-compare{grid-template-columns:1fr}}
+.ops{padding:36px 32px;background:var(--navy-mid)}
+.ops.v{background:var(--navy)}
+.ops .on{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--dust);text-transform:uppercase;margin-bottom:16px}
+.ops.v .on{color:var(--gold)}
+.ops h4{font-family:'Playfair Display',serif;font-weight:400;font-size:22px;color:var(--chalk);margin-bottom:20px;letter-spacing:-0.005em}
+.ops ul{list-style:none}
+.ops li{padding:10px 0;font-size:13.5px;color:var(--limestone);border-bottom:1px dotted rgba(212,168,67,0.1);font-weight:300}
+.ops li:last-child{border-bottom:none}
+.ops li::before{content:"—";color:var(--gold);margin-right:10px;font-weight:500}
+.ops.v li::before{content:"✓";color:#7FD4A3}
+
+/* ═══════ TRACK RECORD ═══════ */
+.four-plats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(27,42,74,0.12);border:1px solid rgba(27,42,74,0.12);margin-top:40px}
+@media(max-width:860px){.four-plats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.four-plats{grid-template-columns:1fr}}
+.plat{padding:32px 24px;background:var(--paper)}
+.plat .py{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);margin-bottom:18px;text-transform:uppercase}
+.plat h5{font-family:'Playfair Display',serif;font-weight:400;font-size:22px;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em}
+.plat .pd{font-size:13px;line-height:1.65;color:var(--graphite);font-weight:300;margin-bottom:14px}
+.plat .pkey{font-family:'Playfair Display',serif;font-weight:500;font-size:16px;color:var(--gold-deep);letter-spacing:-0.005em;padding-top:14px;border-top:1px dotted rgba(27,42,74,0.15)}
+.plat .pkey span{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--graphite);font-weight:400;margin-top:4px;text-transform:uppercase}
+.plat.now{background:var(--navy);color:var(--chalk)}
+.plat.now h5{color:var(--chalk)}
+.plat.now .pd{color:var(--limestone)}
+.plat.now .pkey{color:var(--gold);border-top-color:rgba(212,168,67,0.22)}
+.plat.now .pkey span{color:var(--sand)}
+.plat.now .py{color:var(--gold)}
+
+/* ═══════ FOUNDER (editorial) ═══════ */
+.founder-layout{display:grid;grid-template-columns:0.85fr 1.15fr;gap:90px;align-items:start}
+@media(max-width:960px){.founder-layout{grid-template-columns:1fr;gap:48px}}
+.founder-portrait{aspect-ratio:4/5;background:linear-gradient(160deg,var(--navy-mid) 0%,var(--ink) 100%);position:relative;overflow:hidden;border:1px solid rgba(212,168,67,0.2)}
+.founder-portrait::before{content:"";position:absolute;inset:0;background-image:linear-gradient(to right,rgba(212,168,67,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(212,168,67,0.04) 1px,transparent 1px);background-size:40px 40px}
+.founder-portrait .fp-label{position:absolute;top:28px;left:28px;right:28px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase}
+.founder-portrait .fp-mono{position:absolute;bottom:32px;left:28px;right:28px;display:flex;justify-content:space-between;align-items:end}
+.founder-portrait .fp-mono .mark{width:44px;height:44px;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:26px;letter-spacing:-0.02em}
+.founder-portrait .fp-mono .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--chalk);letter-spacing:-0.01em}
+.founder-portrait .fp-sil{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:72%;height:68%;fill:rgba(10,18,32,0.96)}
+.founder-portrait .fp-halo{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:60%;aspect-ratio:1;background:radial-gradient(circle,rgba(212,168,67,0.14) 0%,transparent 65%);border-radius:50%}
+.founder-portrait .fp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(0.12) contrast(1.03) brightness(0.94);z-index:1}
+.founder-portrait .fp-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,32,0.15) 0%,rgba(10,18,32,0) 18%,rgba(10,18,32,0) 58%,rgba(10,18,32,0.78) 100%);z-index:2;pointer-events:none}
+.founder-portrait .fp-label,.founder-portrait .fp-mono{z-index:3}
+.founder-portrait .fp-mono .sig{text-shadow:0 1px 8px rgba(10,18,32,0.6)}
+.founder-portrait::before{z-index:2}
+
+.founder-text h2{color:var(--chalk);margin-bottom:8px}
+.founder-role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:28px}
+.founder-text p{font-size:15.5px;line-height:1.78;color:var(--limestone);font-weight:300;margin-bottom:18px;max-width:560px}
+.founder-text p em{color:var(--gold);font-style:italic}
+.founder-pull{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(19px,1.8vw,24px);line-height:1.45;color:var(--gold);margin-top:28px;padding-left:20px;border-left:2px solid var(--gold);max-width:560px}
+
+.timeline{margin-top:72px;border-top:1px solid rgba(212,168,67,0.2);padding-top:48px}
+.tl-row{display:grid;grid-template-columns:120px 1fr 1fr 180px;gap:40px;padding:26px 0;border-bottom:1px solid rgba(212,168,67,0.14);align-items:baseline}
+.tl-row .ty{font-family:'Playfair Display',serif;font-weight:400;font-size:28px;color:var(--gold);letter-spacing:-0.015em;line-height:1}
+.tl-row .tt{font-family:'Playfair Display',serif;font-weight:400;font-size:20px;color:var(--chalk);line-height:1.2;letter-spacing:-0.005em}
+.tl-row .tb{font-size:13.5px;line-height:1.7;color:var(--limestone);font-weight:300}
+.tl-row .tk{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;text-align:right}
+@media(max-width:860px){.tl-row{grid-template-columns:1fr;gap:6px;padding:24px 0}.tl-row .tk{text-align:left}}
+
+/* ═══════ RISK + MONITORING ═══════ */
+.risk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(27,42,74,0.12);border:1px solid rgba(27,42,74,0.12);margin-top:40px}
+@media(max-width:820px){.risk-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.risk-grid{grid-template-columns:1fr}}
+.risk{padding:28px 24px;background:var(--paper);min-height:160px}
+.risk .rn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold-deep);margin-bottom:14px}
+.risk h5{font-family:'Playfair Display',serif;font-weight:400;font-size:18px;color:var(--ink);margin-bottom:10px;line-height:1.2;letter-spacing:-0.005em}
+.risk p{font-size:12.5px;line-height:1.6;color:var(--graphite);font-weight:300}
+
+/* DASHBOARD TEASER */
+.dash{margin-top:64px;background:var(--ink);border:1px solid rgba(212,168,67,0.22);padding:20px}
+.dash-head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);padding-bottom:14px;border-bottom:1px solid rgba(212,168,67,0.18);margin-bottom:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.dash-head b{color:var(--chalk)}
+.dash-head .lv{color:#7FD4A3}
+.dash-head .lv .dt{display:inline-block;width:5px;height:5px;background:#7FD4A3;border-radius:50%;margin-right:5px;animation:pulse 2s infinite;vertical-align:middle}
+.dash-table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:11px}
+.dash-table th{text-align:left;padding:10px 12px;font-size:9.5px;letter-spacing:1.5px;color:var(--dust);font-weight:400;text-transform:uppercase;border-bottom:1px solid rgba(212,168,67,0.14)}
+.dash-table td{padding:14px 12px;color:var(--limestone);border-bottom:1px dotted rgba(212,168,67,0.08)}
+.dash-table td.nm{color:var(--chalk);font-weight:500}
+.dash-table tr:hover td{background:rgba(212,168,67,0.03)}
+.tag{display:inline-block;padding:2px 8px;font-size:9px;letter-spacing:1px;text-transform:uppercase;border:1px solid currentColor}
+.tag.ok{color:#7FD4A3}
+.tag.wt{color:#E8B855}
+.tag.in{color:var(--gold)}
+@media(max-width:720px){.dash-table{font-size:10px}.dash-table td{padding:10px 6px}.dash-table th{padding:8px 6px}}
+
+/* ═══════ BUILD WITH US ═══════ */
+.build-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(27,42,74,0.15);border:1px solid rgba(27,42,74,0.15);margin-top:40px}
+.build-grid-5{grid-template-columns:repeat(5,1fr)}
+@media(max-width:1180px){.build-grid{grid-template-columns:repeat(2,1fr)!important}.build-grid-5{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:640px){.build-grid{grid-template-columns:1fr!important}.build-grid-5{grid-template-columns:1fr!important}}
+.bld{padding:36px 28px;background:var(--paper);min-height:260px;display:flex;flex-direction:column;transition:background .25s;cursor:pointer}
+.bld:hover{background:var(--bone)}
+.bld .bn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:20px}
+.bld h4{font-family:'Playfair Display',serif;font-weight:400;font-size:22px;color:var(--ink);line-height:1.2;margin-bottom:12px;letter-spacing:-0.005em}
+.bld p{font-size:13px;line-height:1.7;color:var(--graphite);font-weight:300;flex:1}
+.bld .bl{margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold-deep);text-transform:uppercase}
+
+/* ═══════ CLOSE ═══════ */
+.close{background:var(--ink);color:var(--chalk);padding:140px 0;position:relative}
+.close::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(760px,75vw);height:1px;background:linear-gradient(to right,transparent,var(--gold) 20%,var(--gold) 80%,transparent);opacity:0.4}
+.close-inner{max-width:900px;margin:0 auto;padding:0 40px;text-align:center;position:relative;z-index:2}
+.close .eyebrow{justify-content:center}
+.close-quote{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;font-size:clamp(26px,3.2vw,42px);line-height:1.3;color:var(--chalk);margin-bottom:32px;letter-spacing:-0.01em}
+.close-quote em{color:var(--gold);font-style:italic}
+.close-cite{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--sand);text-transform:uppercase;margin-bottom:56px}
+
+.contact-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,168,67,0.2);border:1px solid rgba(212,168,67,0.2);margin-top:56px;text-align:left}
+@media(max-width:720px){.contact-panel{grid-template-columns:1fr}}
+.cpn{padding:28px 24px;background:var(--navy);display:flex;flex-direction:column}
+.cpn .cpv{flex:1}
+.cpn .cpk{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.cpn .cpv{font-family:'Playfair Display',serif;font-weight:400;font-size:18px;color:var(--chalk);margin-bottom:8px;letter-spacing:-0.005em}
+.cpn a{font-size:13px;color:var(--limestone);letter-spacing:0.2px}
+.cpn a:hover{color:var(--gold)}
+
+/* FOOTER */
+.footer{background:var(--ink);border-top:1px solid rgba(212,168,67,0.15);padding:40px 0 28px;color:var(--dust);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo"><span class="v">V</span> · VANTROCK</a>
+    <div class="nav-links">
+      <a href="#name">Name</a>
+      <a href="#thesis">Thesis</a>
+      <a href="#platform">Platform</a>
+      <a href="#formats">Formats</a>
+      <a href="#engine">Engine</a>
+      <a href="#allied">Allied</a>
+      <a href="#saathi">Saathi</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#founder">Founder</a>
+      <a href="#build" class="nav-cta">Build With Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="wrap hero-content">
+    <div class="hero-meta reveal in">
+      <span class="bar"></span><span><b>EST · 2026</b></span>
+      <span class="dot">·</span><span><b>INDIA</b></span>
+      <span class="dot">·</span><span><b>INDEPENDENT REAL ASSETS PLATFORM</b></span>
+    </div>
+
+    <h1 class="hero-h reveal in">Building the <em>bedrock</em><br/>of Indian real assets.</h1>
+
+    <div class="hero-two">
+      <p class="hero-sub reveal in">Vantrock is an integrated institutional platform — developing, operating, refurbishing and recycling Grade-A real assets across warehouses, industrial, offices and allied formats, with a disciplined capability in industrial and residential plotted ecosystems. Twelve intelligence agents. One operating discipline — built on twenty-one years of first-principles experience.</p>
+      <div class="hero-actions reveal in">
+        <a href="#thesis" class="btn-line">The Thesis <span class="arr">→</span></a>
+        <a href="#platform" class="btn-line">The Platform <span class="arr">→</span></a>
+        <a href="#founder" class="btn-line">The Founder <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <div class="wrap">
+      <div class="hero-foot-inner">
+        <div class="hf-stat"><div class="n">50M+</div><span class="l">Sq Ft &middot; Founder Delivered</span></div>
+        <div class="hf-stat"><div class="n">$1B+</div><span class="l">Capital Deployed &middot; Founder</span></div>
+        <div class="hf-stat"><div class="n">2,000+</div><span class="l">Acres Transacted</span></div>
+        <div class="hf-stat"><div class="n">Zero</div><span class="l">Material Litigation</span></div>
+        <div class="hf-stat"><div class="n">21 yr</div><span class="l">Operator Track Record</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 · NAME · VISION · VALUES -->
+<section id="name">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>01 · The Name</div>
+        <h2 class="h1">A name <em>built,</em><br/>not borrowed.</h2>
+      </div>
+      <p class="lead reveal r-d1">Vantrock is a coined word. It exists in no language, no dictionary, no prior brand. We made it — deliberately — because what we are building did not exist before either. Two ideas, fused into one.</p>
+    </div>
+
+    <div class="name-layout">
+      <div class="etym reveal">
+        <div class="etym-mark">
+          <div class="big"><span class="vant">VANT</span><span class="rock">ROCK</span></div>
+          <div class="rule"></div>
+          <div class="say"><b>VANT</b>-rock &nbsp;·&nbsp; /vɒntˈrɒk/</div>
+        </div>
+        <div class="etym-split">
+          <div class="etym-half">
+            <div class="eh-key">VANT</div>
+            <div class="eh-from">from · Vantage</div>
+            <p>The elevated position from which you see further, see clearer, see first. Twenty-one years of track record give us this vantage experientially. Intelligence gives us this vantage computationally.</p>
+          </div>
+          <div class="etym-half">
+            <div class="eh-key">ROCK</div>
+            <div class="eh-from">from · Bedrock</div>
+            <p>Not a pebble. Not a stone. <em>Rock.</em> The geological bedrock on which everything of permanence is built. Our assets are physical. Our relationships are long. Our returns compound.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="name-copy reveal r-d1">
+        <h3>Two words. <em>One conviction.</em></h3>
+        <p>In real assets, vantage without bedrock is speculation — the ability to see a better opportunity than the market, undermined by an absence of the permanence required to hold it. Bedrock without vantage is stagnation — foundations laid in the wrong place, at the wrong time, for the wrong capital cycle.</p>
+        <p>The business of real assets demands both. The conviction to identify what the market has overlooked, and the permanence to stay long enough for the market to catch up. Vantrock is named after the discipline of holding both together.</p>
+        <div class="tag-line">
+          <div class="tl-k">The Tagline</div>
+          <div class="tl-v"><b>Vantage.</b> Bedrock. <b>Conviction.</b></div>
+          <div class="tl-d">The three words under which the platform operates. Vantage to see it. Bedrock to build it. Conviction to hold it — across cycles, through committees, and for the twenty-plus years that institutional real assets require.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISION -->
+    <div class="vision reveal">
+      <div class="vs-k">— Positioning —</div>
+      <div class="vs-h">India's first <em>independent</em> real assets platform.</div>
+      <p class="vs-s">The most senior line in the system. Every other word of messaging is written to be compatible with it.</p>
+      <div class="vision-words">
+        <div class="vw"><div class="vwk">Word · 01</div><div class="vwt">India's</div><div class="vwd">Country of origin and primary market. Frames the scope honestly, without aspirational geography.</div></div>
+        <div class="vw"><div class="vwk">Word · 02</div><div class="vwt">First</div><div class="vwd">Factually defensible. No other sponsor-independent integrated real assets platform of this scope has been started in India by a purely professional team.</div></div>
+        <div class="vw"><div class="vwk">Word · 03</div><div class="vwt">Independent</div><div class="vwd">A purely professional, owner-operator team — not the India fund of a global GP, not the arm of a sponsor house. Independence is the model.</div></div>
+        <div class="vw"><div class="vwk">Word · 04</div><div class="vwt">Real Assets</div><div class="vwd">Accurate across every engine — broader than warehousing, tighter than alternatives.</div></div>
+        <div class="vw"><div class="vwk">Word · 05</div><div class="vwt">Platform</div><div class="vwd">Not a fund manager. Not a developer. An integrated vehicle that earns across the value chain.</div></div>
+      </div>
+    </div>
+
+    <!-- VALUES -->
+    <div class="values-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>The Values</div>
+        <h2 class="h2">Five values that govern <em>behaviour.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">They rarely appear verbatim in marketing. They shape what gets said, what gets built, and — more importantly — what does not.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="val reveal"><div class="vn">Value · 01</div><h4>Permanence</h4><p>We build for lasting value, not ephemeral gain. The asset outlasts the cycle that commissioned it; the relationship outlasts the deal that began it.</p><div class="vmeta">— the <em>rock</em> in Vantrock</div></div>
+      <div class="val reveal r-d1"><div class="vn">Value · 02</div><h4>Clarity</h4><p>Complex investments deserve clear articulation. Transparent waterfalls, audited metrics, numbers that a committee can defend without footnotes. Plain words for serious capital.</p><div class="vmeta">— articulated, not obscured</div></div>
+      <div class="val reveal r-d2"><div class="vn">Value · 03</div><h4>Conviction</h4><p>We take measured positions on compelling opportunities — and hold them long enough to earn the re-rating. Discipline over opportunism. Twenty-one years of it.</p><div class="vmeta">— the third word of the tagline</div></div>
+      <div class="val reveal r-d3"><div class="vn">Value · 04</div><h4>Integration</h4><p>AI and human wisdom are not opposing forces. Twelve intelligence agents. Twenty-one years of operator judgement. Each sharpens the other; neither replaces it.</p><div class="vmeta">— the operating model</div></div>
+      <div class="val reveal r-d4"><div class="vn">Value · 05</div><h4>Dharmic Stewardship</h4><p>Managing capital with moral clarity. The discipline of treating every tenant, every landowner, every counterparty as a <em>saathi</em> — a companion on a long road, not a counterparty on a short one.</p><div class="vmeta">— the philosophy of Saathi</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · THESIS -->
+<section id="thesis">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>02 · The Thesis</div>
+        <h2 class="h1">India's <em>real-asset stock</em><br/>is fragmented.<br/>Institutional demand is not.</h2>
+      </div>
+      <p class="lead reveal r-d1">India's logistics stock is <em>$30B fragmented.</em> Institutional demand is not. The country has built its industrial backbone on the wrong footings — plotted titles, informal operators, underwriting built for a different asset class. Vantrock exists to re-underwrite that stock at the standard the next decade of real-asset capital requires.</p>
+    </div>
+
+    <div class="thesis-3">
+      <div class="t-col reveal">
+        <span class="tn">01 · DEMAND</span>
+        <h4>A structural shortage at national scale.</h4>
+        <p>India needs a generational step-up in Grade-A industrial and logistics stock to meet projected demand through the decade. Current institutional supply is a fraction of that. Most existing stock fails institutional underwriting on fire, dock, or title. The shortfall runs into hundreds of millions of square feet — a gap no single developer has the breadth to close.</p>
+        <div class="sn"><span>Supply gap · by 2029</span><b>500M sf<sup style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-deep);margin-left:4px">†</sup></b></div>
+      </div>
+      <div class="t-col reveal r-d1">
+        <span class="tn">02 · CAPITAL</span>
+        <h4>Institutional capital has arrived in force.</h4>
+        <p>Sovereigns, pensions, insurance, and long-duration domestic capital have materially stepped up their logistics and industrial allocation in the current cycle. What they find is a market where the vast majority of stock is owned by families, plot-holders and informal developers without the operating discipline this capital requires.</p>
+        <div class="sn"><span>Capital inflow · recent cycle</span><b>$2.5B<sup style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-deep);margin-left:4px">†</sup></b></div>
+      </div>
+      <div class="t-col reveal r-d2">
+        <span class="tn">03 · PREMIUM</span>
+        <h4>The margin has migrated to the operator.</h4>
+        <p>In every mature market — US, UK, Japan — value has moved from land to operations. India is next. The developer who operates at institutional standard, across formats, with real intelligence, earns the re-rating. Evidence: a measurable NOI uplift on refurbished stock, repeated across pre-leased portfolio acquisitions.</p>
+        <div class="sn"><span>NOI uplift · refurb</span><b>Material<sup style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-deep);margin-left:4px">†</sup></b></div>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--graphite);text-transform:uppercase"><sup style="color:var(--gold-deep);margin-right:4px">†</sup>Market data sourced from Knight Frank, CBRE, Colliers, JLL, Anarock and government releases · platform numbers subject to Big-Four audit prior to public issuance</p>
+
+    <!-- FIVE FORCES -->
+    <div style="margin-top:64px;">
+      <div class="eyebrow reveal"><span class="bar"></span>Five forces · converging now</div>
+      <h3 class="h2 reveal r-d1" style="color:var(--ink);max-width:24ch;margin-bottom:28px">Long-term tailwinds. A platform built to compound across them.</h3>
+      <div class="forces">
+        <div class="force reveal"><div class="fn">01 · SUPPLY</div><h5>500M<span style="font-size:0.5em;color:var(--dust)">+ sf</span></h5><div class="fl">Gap by 2029</div><p>Grade-A shortfall the existing developer base cannot close at required specification.</p></div>
+        <div class="force reveal r-d1"><div class="fn">02 · CAPITAL</div><h5>$2.5B</h5><div class="fl">Inflow · CY24</div><p>Institutional logistics and industrial inflows, roughly three-times prior-year levels.</p></div>
+        <div class="force reveal r-d2"><div class="fn">03 · EXIT</div><h5>₹4.2K<span style="font-size:0.5em;color:var(--dust)"> Cr</span></h5><div class="fl">Proven Pathway</div><p>Public-market exit pathway validated for Indian logistics platforms of institutional scale.</p></div>
+        <div class="force reveal r-d3"><div class="fn">04 · POLICY</div><h5>₹1.76L<span style="font-size:0.5em;color:var(--dust)"> Cr</span></h5><div class="fl">PLI + Gati Shakti</div><p>Port, multi-modal, and PLI manufacturing push aligning infrastructure to industrial capacity.</p></div>
+        <div class="force reveal r-d4"><div class="fn">05 · WHITESPACE</div><h5>Zero</h5><div class="fl">Precedent</div><p>No integrated, AI-native, multi-format logistics operating platform exists in India today.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · THE GAP IN THE GAP -->
+<section class="bone tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>03 · The Gap in the Gap</div>
+        <h2 class="h1">What <em>doesn't</em> exist —<br/>is what we are building.</h2>
+      </div>
+      <p class="lead reveal r-d1">India has logistics developers. It has capital allocators. What it does not have — anywhere — is a single platform that combines all seven of these disciplines under one operating standard.</p>
+    </div>
+    <ol style="list-style:none;counter-reset:gap;max-width:1100px">
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid rgba(27,42,74,0.12)" class="reveal"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">01</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">Multi-format development across the entire logistics spectrum</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Big-box, multi-storey, cold chain, port-based, dark-store / self-storage — engineered and operated to the same institutional standard, in one vehicle.</div></div></li>
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid rgba(27,42,74,0.12)" class="reveal r-d1"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">02</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">A capital recycling engine that generates liquidity from the middle</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Industrial plotted parks sold on a disciplined velocity cycle — the self-funding mechanism that bridges the J-curve every logistics platform faces.</div></div></li>
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid rgba(27,42,74,0.12)" class="reveal r-d2"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">03</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">A value-added services platform embedded in every asset</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Saathi — six operating pillars (Energy, Mobility, Equipment, Compliance, Talent, Technology) delivering measurable revenue uplift and sector-leading tenant retention.</div></div></li>
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid rgba(27,42,74,0.12)" class="reveal"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">04</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">A Grade-B buy-and-refurbish operation — first-mover in institutional refurb</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Acquire, upgrade, and re-tenant underperforming stock on a disciplined playbook — capturing Grade-A rents at Grade-B entry economics.</div></div></li>
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid rgba(27,42,74,0.12)" class="reveal r-d1"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">05</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">Port-based logistics anchored by proven single-site innovation</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Including India's largest single-location multi-storey port-based asset — a format built before the market had a name for it.</div></div></li>
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid rgba(27,42,74,0.12)" class="reveal r-d2"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">06</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">AI-native operations running materially leaner than traditional managers</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Twelve narrow, specialised intelligence agents from land origination through investor reporting — an operating layer, not a feature.</div></div></li>
+      <li style="display:grid;grid-template-columns:56px 1fr;gap:28px;padding:22px 0" class="reveal r-d3"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold-deep);padding-top:6px">07</span><div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em">A designed pathway to public markets</div><div style="font-size:14px;color:var(--graphite);font-weight:300;line-height:1.65">Architected from day one for IPO, InvIT, strategic and asset-level exits — giving institutional and domestic capital access to economics previously reserved for the largest global allocators.</div></div></li>
+    </ol>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--gold-deep);margin-top:40px;max-width:720px" class="reveal">Vantrock operates entirely in whitespace. The combination — not any single capability — is the moat.</p>
+  </div>
+</section>
+
+<!-- 03 · PLATFORM -->
+<section class="dark" id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>04 · The Platform</div>
+        <h2 class="h1">Six capabilities. <em>One operating discipline.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Vantrock is not a developer that happens to manage assets. Each capability sharpens the next — and the whole is the platform India's next generation of industrial capital requires.</p>
+    </div>
+
+    <div class="cap-list">
+      <div class="cap-row reveal"><div class="cap-n">01</div><div class="cap-title">Develop</div><div class="cap-body">Ground-up institutional stock across five formats. Single-window title-to-certificate execution, engineered to sovereign-tenant specification rather than local market norm.</div><div class="cap-meta"><b>Core capability</b>Five formats · Grade-A</div></div>
+      <div class="cap-row reveal r-d1"><div class="cap-n">02</div><div class="cap-title">Operate</div><div class="cap-body">Twelve proprietary intelligence agents monitoring every square foot — uptime, energy, safety, tenant performance, cost-to-income — under an operating discipline benchmarked globally.</div><div class="cap-meta"><b>12 AI Agents</b>65% leaner ops</div></div>
+      <div class="cap-row reveal r-d2"><div class="cap-n">03</div><div class="cap-title">Refurbish</div><div class="cap-body">India's first institutional-grade refurbishment operation. We acquire pre-leased and un-leased Grade-B portfolios, bring them to Grade-A specification through trades we own, and hold or re-tenant at institutional rent — unlocking significant rental uplift on portfolios the market cannot upgrade.</div><div class="cap-meta"><b>Pre-leased + un-leased</b>Portfolio acquisitions</div></div>
+      <div class="cap-row reveal"><div class="cap-n">04</div><div class="cap-title">Recycle</div><div class="cap-body">The compounding engine. Industrial plotted parks — and, as an allied play, residential plotted ecosystems on the same land holding — generate the liquidity that bridges J-curves, funds refurbishment, and compounds platform NAV without dilution.</div><div class="cap-meta"><b>Industrial + allied residential</b>The self-funding engine</div></div>
+      <div class="cap-row reveal r-d1"><div class="cap-n">05</div><div class="cap-title">Service</div><div class="cap-body">Saathi — productised facilities management, compliance, safety audit, tenant experience. Delivered to our own stock and, selectively, to institutional owners of third-party portfolios.</div><div class="cap-meta"><b>+27% Uplift</b>6 pillars · embedded</div></div>
+      <div class="cap-row reveal r-d2"><div class="cap-n">06</div><div class="cap-title">Partner</div><div class="cap-body">JV, JDA, leasehold, government mandate, co-development — modelled transparently for every class of landowner, institution, developer or state body. The platform is a partner, not a counterparty.</div><div class="cap-meta"><b>Every structure</b>State · owner · institution</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · FORMATS (DATA-LED) -->
+<section id="formats">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>05 · What We Build</div>
+        <h2 class="h1">Five formats.<br/><em>One build discipline.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">From volume-led logistics to value-led specialisation — each format engineered, built, and operated to the same institutional standard. Format follows tenant, never the other way.</p>
+    </div>
+
+    <div class="fmt-grid">
+      <div class="fmt-head"><div></div><div>Format · Class</div><div>Scale</div><div>Target Rent</div><div>Clear Ht · Dock Ratio</div><div>Primary Demand</div></div>
+
+      <div class="fmt-row reveal"><div class="f-n">01 · FMT</div><div class="f-t">Grade-A Big-Box<span>Volume-led · Institutional Backbone</span></div><div class="f-d">0.2 – 2.0M sf<span>Per asset</span></div><div class="f-d">₹25 – 35<span>per sf / month</span></div><div class="f-d">12 – 14m<span>1 dock / 10k sf</span></div><div class="f-desc">3PL, e-commerce fulfilment, automotive OEMs, consumer brands. The institutional floor on which everything else is built.</div></div>
+
+      <div class="fmt-row reveal r-d1"><div class="f-n">02 · FMT</div><div class="f-t">Urban Multi-Storey<span>Speed-led · Metro Catchments</span></div><div class="f-d">0.3 – 1.0M sf<span>Per asset · 3–4F</span></div><div class="f-d">₹90 – 200<span>per sf / month</span></div><div class="f-d">Ramp / lift<span>Per-floor docks</span></div><div class="f-desc">Last-mile, quick-commerce, mixed-use urban distribution in dense metros where land is scarce and speed-to-consumer is the premium.</div></div>
+
+      <div class="fmt-row reveal r-d2"><div class="f-n">03 · FMT</div><div class="f-t">Cold Chain Integrated<span>Spec-led · Temperature Controlled</span></div><div class="f-d">50k – 300k sf<span>Per asset</span></div><div class="f-d">₹35 – 50<span>per sf / month</span></div><div class="f-d">Multi-zone<span>-25°C to +25°C</span></div><div class="f-desc">Pharma, fresh grocery, FMCG, export QSR supply chains. Integrated within our parks rather than as standalone infrastructure.</div></div>
+
+      <div class="fmt-row reveal r-d3"><div class="f-n">04 · FMT</div><div class="f-t">Port-Based / FTWZ<span>Trade-led · Bonded Logistics</span></div><div class="f-d">0.5 – 1.5M sf<span>Per site</span></div><div class="f-d">₹50 – 100<span>per sf / month</span></div><div class="f-d">12 – 16m<span>ICD / customs on site</span></div><div class="f-desc">EXIM trade, customs-bonded warehousing, freight consolidation — anchored by India's largest single-location multi-storey port-based asset.</div></div>
+
+      <div class="fmt-row reveal r-d4"><div class="f-n">05 · FMT</div><div class="f-t">Dark Stores · Self-Storage<span>Density-led · Consumer Infrastructure</span></div><div class="f-d">3k – 80k sf<span>Per node</span></div><div class="f-d">₹40 – 400<span>per sf / month</span></div><div class="f-d">4 – 6m<span>In-city nodes</span></div><div class="f-desc">Q-commerce fulfilment, MSMEs, corporate and consumer self-storage — the highest-velocity format, compounding off a proven base.</div></div>
+    </div>
+
+    <div class="spectrum">
+      <div class="spectrum-title">
+        <div class="h3">The rental spectrum</div>
+        <div class="sub">₹25 → ₹400 / sf / month</div>
+      </div>
+      <div class="spec-bar" style="position:relative">
+        <div class="spec-seg" style="height:22%"><div class="lbl">Big-Box</div></div>
+        <div class="spec-seg" style="height:32%"><div class="lbl">Cold Chain</div></div>
+        <div class="spec-seg" style="height:48%"><div class="lbl">Port-Based</div></div>
+        <div class="spec-seg" style="height:72%"><div class="lbl">Multi-Storey</div></div>
+        <div class="spec-seg" style="height:100%"><div class="lbl">Dark · SS</div></div>
+      </div>
+      <div class="spec-axis" style="margin-top:48px"><span>₹25 <b>LOW</b></span><span>The widest rent-per-sf spread of any single logistics platform</span><span><b>HIGH</b> ₹400</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · REFURB + RECYCLER -->
+<section class="bone" id="engine">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>06 · The Compounding Engine</div>
+        <h2 class="h1">How the platform <em>funds itself.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Two disciplines — Refurbishment and Recycling — generate the internal liquidity that bridges J-curves, accelerates NOI, and compounds platform NAV without dependence on primary fund-raising cycles.</p>
+    </div>
+
+    <div class="engine-grid">
+      <div class="engine reveal">
+        <div class="en">A · Refurbishment</div>
+        <h3>Pre-leased and un-leased portfolios. Grade-B in. <em>Grade-A out.</em></h3>
+        <p>India's first institutional-grade refurbishment operation — focused on <em>pre-leased and un-leased Grade-B portfolios</em>, not just empty stock. Acquire at portfolio economics, enhance through trades we own, and hold under existing leases or re-tenant at institutional rent. Pre-lease protects downside; fixed-price civil protects capex; QC gates at M2 and M4 release tranches.</p>
+        <ul class="engine-list">
+          <li><b>TARGET</b>Pre-leased and un-leased Grade-B institutional portfolios · family and strategic sellers</li>
+          <li><b>AUDIT</b>Structural, title, lease-by-lease tenant review · pre-acquisition DD</li>
+          <li><b>ENHANCE</b>Statutory · design · fixed-price civil through the supply chain we own</li>
+          <li><b>STABILISE</b>Existing leases retained and enhanced · vacant space re-leased at institutional rent</li>
+        </ul>
+        <div class="engine-stats">
+          <div class="es"><div class="en-n">Significant</div><div class="en-l">Rental uplift</div></div>
+          <div class="es"><div class="en-n">Steady</div><div class="en-l">Stabilised yield</div></div>
+          <div class="es"><div class="en-n">Faster</div><div class="en-l">Payback profile</div></div>
+        </div>
+      </div>
+
+      <div class="engine reveal r-d1">
+        <div class="en">B · The Recycler</div>
+        <h3>Industrial plotted parks. <em>The self-funding engine.</em></h3>
+        <p>Land sourced from state industrial corporations, DMIC, private JVs, and direct landowner partnerships. Infrastructure brought to plug-and-play specification — roads, drains, power, water, STP. Sold as 0.5–5 acre parcels to manufacturing, BTS, and corporate JV counterparties on a milestone-linked payment schedule. The mechanism that compounds platform NAV without dilution.</p>
+        <ul class="engine-list">
+          <li><b>SOURCE</b>DMIC · state industrial corps · private JV · pre-approved zoning</li>
+          <li><b>BUILD</b>Plug-and-play infrastructure · fast-track approvals · milestone delivery</li>
+          <li><b>SELL</b>Plotted sales · BTS manufacturing · corporate and family JVs</li>
+          <li><b>RECYCLE</b>Capital redeployed through SPV-ring-fenced sleeves · funds development and refurb</li>
+        </ul>
+        <div class="engine-stats">
+          <div class="es"><div class="en-n">Self-</div><div class="en-l">Funding</div></div>
+          <div class="es"><div class="en-n">SPV</div><div class="en-l">Ring-fenced</div></div>
+          <div class="es"><div class="en-n">NAV</div><div class="en-l">Compounding</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06B · ALLIED · RESIDENTIAL PLOTTING -->
+<section id="allied">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>06B · Allied Capability</div>
+        <h2 class="h1">Residential plotting —<br/>an <em>allied</em> opportunity, not a pivot.</h2>
+      </div>
+      <p class="lead reveal r-d1">A disciplined, opportunistic residential plotting capability exists inside the platform for one reason: it sharpens our land-acquisition economics. Vantrock is not a residential developer. We are an industrial and real-assets platform that occasionally, where the parcel demands it, monetises an allied residential tranche on the same holding.</p>
+    </div>
+
+    <div class="allied">
+      <div class="reveal">
+        <div class="allied-band"><span class="dt"></span>Allied · Opportunistic · Scale-enabling</div>
+        <h3>Why the platform touches <em>residential plotting</em> at all.</h3>
+        <div class="ac-rule"></div>
+        <p>Large industrial and logistics land parcels in India frequently carry a mixed-use character. A portion is zoned or contiguous to residential catchments. A disciplined allied residential plotting capability converts that reality into a structural advantage — not a mandate creep.</p>
+        <p>The capability lets us acquire <em>meaningfully larger land holdings</em> than a pure-play industrial developer can underwrite, hold them longer at lower effective blended cost, and recycle the non-industrial portion as residential plotted inventory. The core business remains industrial. The residential play is the mechanism.</p>
+        <p class="allied-pull">An allied capability deployed to acquire industrial land at scale — never a standalone residential business.</p>
+      </div>
+
+      <div class="allied-why reveal r-d1">
+        <div class="k">— Why it matters</div>
+        <ul>
+          <li><b>01</b><span><em>Scale.</em> Lets us acquire multi-hundred-acre parcels that pure-play industrial developers cannot underwrite profitably on their own.</span></li>
+          <li><b>02</b><span><em>Blended cost.</em> The residential portion monetises on its own cadence; the effective per-acre cost of the retained industrial land falls materially.</span></li>
+          <li><b>03</b><span><em>JV optionality.</em> The capability opens joint venture and joint development structures with landowners we would otherwise walk past.</span></li>
+          <li><b>04</b><span><em>Ecosystem value.</em> Tenant workforce catchments, ancillary infrastructure, and township-adjacent logistics all benefit from residential proximity.</span></li>
+          <li><b>05</b><span><em>Capital velocity.</em> Residential plotted sales recycle on a disciplined cadence, feeding the platform's compounding engine.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="allied-not reveal">
+      <div class="k">— What this is not</div>
+      <div class="q">Vantrock is <em>not</em> a residential real estate developer. Residential plotting is deployed selectively, as an allied land-acquisition instrument, inside an industrial and real-assets platform.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · SAATHI -->
+<section class="dark" id="saathi">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>07 · Saathi · The Service Layer</div>
+        <h2 class="h1">The tenant is not a counterparty.<br/>The tenant is a <em>saathi.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Saathi inverts the developer-tenant relationship. Six operating pillars embedded in every asset — Energy, Mobility, Equipment, Compliance, Talent, Technology — converting the rent roll into a dynamic revenue engine with measurable, audited uplift.</p>
+    </div>
+
+    <div class="saathi-intro">
+      <p class="saathi-quote reveal"><em>Saathi</em> — a Sanskrit word for companion — is the inversion the market has been missing. Not a counterparty extracting rent. A companion on a long road. The philosophy that makes sector-leading tenant retention possible.</p>
+    </div>
+
+    <div class="saathi-kpi">
+      <div class="skp reveal"><div class="l">Uplift</div><div class="n">Measured</div><div class="d">Revenue uplift across Saathi-attached assets · audited</div></div>
+      <div class="skp reveal r-d1"><div class="l">Retention</div><div class="n">Sector-leading</div><div class="d">Tenant retention — the re-leasing cost the platform no longer incurs</div></div>
+      <div class="skp reveal r-d2"><div class="l">Attach</div><div class="n">Rising</div><div class="d">Attach rate of Saathi services by tenant square footage, trending upward</div></div>
+      <div class="skp reveal r-d3"><div class="l">Yield lift</div><div class="n">Cap-rate<span style="font-size:0.5em;color:var(--sand)"> compression</span></div><div class="d">Cap-rate compression earned on Saathi-attached stabilised assets</div></div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar reveal"><div class="pn">PILLAR · 01</div><h4>Energy</h4><p>Solar rooftop programme and EV charging infrastructure across every asset. Grid tariff discounts passed to tenant, capex under PPA / OPEX models — attractive platform economics and a multi-year payback envelope.</p><div class="pm">Solar + charging · programme</div></div>
+      <div class="pillar reveal r-d1"><div class="pn">PILLAR · 02</div><h4>Mobility</h4><p>Fleet management and EV logistics assets for tenant last-mile and intra-warehouse operations. Lease-plus-service revenue, disciplined payback, asset-light deployment.</p><div class="pm">EV · fleet + charging</div></div>
+      <div class="pillar reveal r-d2"><div class="pn">PILLAR · 03</div><h4>Equipment</h4><p>MHE leasing and high-density racking systems deployed in-park. Net-lease economics, structured payback, zero operating cost to platform and significantly reduced capex for tenant.</p><div class="pm">Racking · MHE</div></div>
+      <div class="pillar reveal"><div class="pn">PILLAR · 04</div><h4>Compliance</h4><p>Statutory audit, safety certification, ESG and statutory filings managed centrally. The compliance risk that ordinarily sits with the tenant, absorbed by the platform. Retention driver.</p><div class="pm">100% statutory · audit-ready</div></div>
+      <div class="pillar reveal r-d1"><div class="pn">PILLAR · 05</div><h4>Talent</h4><p>On-demand staffing, training and workforce retention programmes. A bench the tenant can pull from on-demand — seasonal flex without the attrition cost. Reduces headcount volatility.</p><div class="pm">Bench-on-demand · training</div></div>
+      <div class="pillar reveal r-d2"><div class="pn">PILLAR · 06</div><h4>Technology</h4><p>Integrated WMS, IoT sensors and real-time operating dashboards. Platform-grade technology a single tenant could never justify — delivered as SaaS, attractive platform margin, immediate payback.</p><div class="pm">WMS + IoT · 12 agents</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · INTELLIGENCE -->
+<section class="deep" id="intelligence">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>08 · Vantrock Intelligence</div>
+        <h2 class="h1">Twelve agents.<br/><em>One operating cockpit.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Not a generalist model with a logistics veneer. Twelve narrow, specialised intelligence agents — each watching one dimension of the operating surface, each with an auditable rule set, each with an immutable log for institutional reporting. Together they compose the cockpit.</p>
+    </div>
+
+    <div class="cockpit reveal">
+      <!-- TOP BAR -->
+      <div class="cockpit-bar">
+        <div class="cb-brand"><span class="dt"></span>VANTROCK <b>INTELLIGENCE</b> · COCKPIT</div>
+        <div class="cb-ticker"><span>
+          <em>ALPHA</em> pre-lease <b>+2.4pp</b> · <em>BETA</em> DSO <b>45d</b> · <em>DELTA</em> stabilised · <em>EPSILON</em> milestone <b>ok</b> · <em>ZETA</em> leasing <b>active</b> · <em>THETA</em> BTS signed · <em>GAMMA</em> zoning <b>cleared</b> · <em>ETA</em> exit <b>in progress</b> ·&nbsp;
+          <em>ALPHA</em> pre-lease <b>+2.4pp</b> · <em>BETA</em> DSO <b>45d</b> · <em>DELTA</em> stabilised · <em>EPSILON</em> milestone <b>ok</b> · <em>ZETA</em> leasing <b>active</b> · <em>THETA</em> BTS signed · <em>GAMMA</em> zoning <b>cleared</b> · <em>ETA</em> exit <b>in progress</b> ·&nbsp;
+        </span></div>
+        <div class="cb-stat">Agents <b class="ok">12/12 LIVE</b></div>
+        <div class="cb-stat">Assets <b>37 monitored</b></div>
+        <div class="cb-stat">Uptime <b class="ok">99.94%</b></div>
+        <div class="cb-stat">Build <b class="gold">v4.2.1</b></div>
+      </div>
+
+      <!-- THREE CATEGORIES -->
+      <div class="cockpit-body">
+        <!-- ORIGINATION -->
+        <div class="cockpit-col">
+          <div class="cc-head"><div class="cc-t">— Origination</div><div class="cc-c">04 agents</div></div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">A · 01</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Land Origination</h6>
+            <div class="a2-sub">Zoning match, pricing benchmarks, title diligence automation — state-by-state.</div>
+            <div class="a2-meta"><span class="m-l">Parcels screened · wk</span><span class="m-v g">1,284</span></div>
+            <div class="a2-bar" style="--bar-w:82%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">A · 02</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Underwriting</h6>
+            <div class="a2-sub">Comparables engine, sensitivity modelling, full-lifecycle calibration per format and micro-market.</div>
+            <div class="a2-meta"><span class="m-l">Deals in model · open</span><span class="m-v g">46</span></div>
+            <div class="a2-bar" style="--bar-w:66%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">A · 03</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Permitting</h6>
+            <div class="a2-sub">Government workflow automation, regulatory tracking, state-by-state liaison — compressing approval cycles.</div>
+            <div class="a2-meta"><span class="m-l">Approvals tracked</span><span class="m-v g">218</span></div>
+            <div class="a2-bar" style="--bar-w:58%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">A · 04</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Design Co-Pilot</h6>
+            <div class="a2-sub">Specification library, optioneering, trade-off analysis across format, yield, cost and tenant fit.</div>
+            <div class="a2-meta"><span class="m-l">Options / site · avg</span><span class="m-v g">08</span></div>
+            <div class="a2-bar" style="--bar-w:44%"><i></i></div>
+          </div>
+        </div>
+
+        <!-- DEVELOPMENT -->
+        <div class="cockpit-col">
+          <div class="cc-head"><div class="cc-t">— Development</div><div class="cc-c">04 agents</div></div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">B · 05</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Procurement</h6>
+            <div class="a2-sub">Bill-of-quantities automation, vendor selection, price discovery across active build sites.</div>
+            <div class="a2-meta"><span class="m-l">Active POs · live</span><span class="m-v g">412</span></div>
+            <div class="a2-bar" style="--bar-w:74%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">B · 06</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Construction</h6>
+            <div class="a2-sub">Schedule management, quality-control checkpoints, safety incident detection — with real-time intervention.</div>
+            <div class="a2-meta"><span class="m-l">Sites monitored</span><span class="m-v g">11</span></div>
+            <div class="a2-bar" style="--bar-w:88%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">B · 07</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Leasing</h6>
+            <div class="a2-sub">Tenant pipeline, dynamic pricing against live market comps, renewal forecasting 18 months ahead.</div>
+            <div class="a2-meta"><span class="m-l">Pipeline · sq ft</span><span class="m-v g">6.4M</span></div>
+            <div class="a2-bar" style="--bar-w:72%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">B · 08</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Operations</h6>
+            <div class="a2-sub">SLA compliance, predictive maintenance across every critical system, dispatch to contractor and tenant.</div>
+            <div class="a2-meta"><span class="m-l">SLA · rolling 30d</span><span class="m-v ok">99.8%</span></div>
+            <div class="a2-bar" style="--bar-w:96%"><i></i></div>
+          </div>
+        </div>
+
+        <!-- OPERATIONS + CAPITAL -->
+        <div class="cockpit-col">
+          <div class="cc-head"><div class="cc-t">— Operations + Capital</div><div class="cc-c">04 agents</div></div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">C · 09</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Energy</h6>
+            <div class="a2-sub">Dispatch optimisation, solar yield analytics, tenant sub-metering, ESG telemetry to disclosure standard.</div>
+            <div class="a2-meta"><span class="m-l">Solar yield · mtd</span><span class="m-v g">On plan</span></div>
+            <div class="a2-bar" style="--bar-w:78%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">C · 10</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Mobility</h6>
+            <div class="a2-sub">Fleet routing, telemetry aggregation, EV charging dispatch — tenant-facing and platform-facing at once.</div>
+            <div class="a2-meta"><span class="m-l">EV uptime · fleet</span><span class="m-v ok">99.2%</span></div>
+            <div class="a2-bar" style="--bar-w:92%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">C · 11</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Compliance</h6>
+            <div class="a2-sub">Audit trail, regulatory filing, insurer portal — every filing tracked, every renewal pre-emptive.</div>
+            <div class="a2-meta"><span class="m-l">Filings · 90d</span><span class="m-v ok">zero lapses</span></div>
+            <div class="a2-bar" style="--bar-w:100%"><i></i></div>
+          </div>
+          <div class="a2">
+            <div class="a2-top"><span class="a2-id">C · 12</span><span class="a2-st"><span class="dt"></span>LIVE</span></div>
+            <h6>Investor Reporting</h6>
+            <div class="a2-sub">NAV, monthly packs, MIS — auto-generated, immutable, institutional-grade from inception.</div>
+            <div class="a2-meta"><span class="m-l">Packs · auto-signed</span><span class="m-v g">1,104</span></div>
+            <div class="a2-bar" style="--bar-w:84%"><i></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE FEED -->
+      <div class="cockpit-feed">
+        <div class="cf-k">— Live log</div>
+        <div class="cf-log"><span>
+          <b>[14:02]</b> <em>A·01</em> 14 parcels flagged · NCR Sohna · zoning match above threshold &nbsp;·&nbsp;
+          <b>[14:07]</b> <em>B·06</em> Alpha SITE-A safety checkpoint <em>PASS</em> &nbsp;·&nbsp;
+          <b>[14:11]</b> <em>A·02</em> Beta v4 model pushed · sensitivity +3 scenarios &nbsp;·&nbsp;
+          <b>[14:15]</b> <em>C·09</em> Delta solar yield <em>on-plan</em> &nbsp;·&nbsp;
+          <b>[14:18]</b> <em>B·07</em> Zeta · 2 tenant LOIs routed to sales ops &nbsp;·&nbsp;
+          <b>[14:23]</b> <em>C·11</em> Gamma filing <em>submitted</em> · RoC · within window &nbsp;·&nbsp;
+          <b>[14:29]</b> <em>C·12</em> Monthly LP pack <em>auto-signed</em> · immutable log #11042 &nbsp;·&nbsp;
+          <b>[14:02]</b> <em>A·01</em> 14 parcels flagged · NCR Sohna · zoning match above threshold &nbsp;·&nbsp;
+          <b>[14:07]</b> <em>B·06</em> Alpha SITE-A safety checkpoint <em>PASS</em> &nbsp;·&nbsp;
+          <b>[14:11]</b> <em>A·02</em> Beta v4 model pushed · sensitivity +3 scenarios &nbsp;·&nbsp;
+          <b>[14:15]</b> <em>C·09</em> Delta solar yield <em>on-plan</em> &nbsp;·&nbsp;
+          <b>[14:18]</b> <em>B·07</em> Zeta · 2 tenant LOIs routed to sales ops &nbsp;·&nbsp;
+          <b>[14:23]</b> <em>C·11</em> Gamma filing <em>submitted</em> · RoC · within window &nbsp;·&nbsp;
+          <b>[14:29]</b> <em>C·12</em> Monthly LP pack <em>auto-signed</em> · immutable log #11042 &nbsp;·&nbsp;
+        </span></div>
+        <div class="cf-count">EVENTS · 24h <b>14,682</b></div>
+      </div>
+    </div>
+
+    <div class="ops-compare">
+      <div class="ops">
+        <div class="on">Traditional Operations</div>
+        <h4>Manual. Siloed. Lagging.</h4>
+        <ul>
+          <li>Manual workflows and paper trails</li>
+          <li>Siloed systems — Excel-to-ERP disconnect</li>
+          <li>Higher headcount, redundant roles</li>
+          <li>Slower turn-around-time on decisions</li>
+          <li>Error-prone manual MIS</li>
+        </ul>
+      </div>
+      <div class="ops v">
+        <div class="on">Vantrock Intelligence</div>
+        <h4>Integrated. Auditable. Real-time.</h4>
+        <ul>
+          <li>Twelve AI agents integrated end-to-end</li>
+          <li>Materially leaner operating model</li>
+          <li>Auto-MIS and real-time dashboards</li>
+          <li>Faster leasing and pricing decisions</li>
+          <li>Predictive maintenance with audit trail</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · FOUNDER -->
+<section class="deep" id="founder" style="border-top:1px solid rgba(212,168,67,0.14)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>09 · The Founder</div>
+        <h2 class="h1">Twenty-one years.<br/>Four platforms. <em>Every real-asset class.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Vantrock is not a thesis incubated in a deck. It is the discipline one operator has been underwriting, building, and operating — across offices, residential, warehouses, factories and power plants — since before Indian real assets were an institutional conversation.</p>
+    </div>
+
+    <div class="founder-layout">
+      <div class="founder-portrait reveal">
+        <img class="fp-img" src="assets/founder.jpeg" alt="Founder portrait"/>
+        <div class="fp-scrim"></div>
+        <div class="fp-mono"><div class="mark">V</div><div class="sig">Founder · CEO</div></div>
+      </div>
+
+      <div class="founder-text reveal r-d1">
+        <h2 class="h1">The <em>operator</em><br/>behind the platform.</h2>
+        <div class="founder-role">Founder &amp; Chief Executive</div>
+        <p>Two decades ago, before "institutional real assets" was a phrase used in India, a single operator began underwriting every corner of the built environment to a standard global capital had yet to ask for. Offices. Residential. Warehouses. Factories. Power plants. The capability set most global platforms — and every sponsor-backed Indian one — built in separate silos, one operator built in series.</p>
+        <p>At <em>JSW Severfield</em>, the discipline of industrial construction and the pre-engineered-building standards India would later adopt as institutional default across factories and warehouses. At <em>Embassy Industrial Parks</em>, seventeen million square feet of Grade-A logistics stock delivered across six years — the portfolio that became the template for institutional Indian logistics, exited to Blackstone for ~$700M. At <em>Welspun One</em>, 22M sf under management, ₹10,500 Cr in AUM, and the retail-institutional bridge that brought a thousand-plus investors into this asset class for the first time.</p>
+        <p>Beneath the platform record: power assets commissioned, factory complexes delivered on turnkey mandate, residential developments stabilised, and both institutional and HNI capital raised, managed, and returned. The built record spans every real-asset class India will need to re-underwrite this decade — and the capital record spans every counterparty that will do the underwriting.</p>
+        <p>Across twenty-one years: repeat institutional capital, zero material litigation, and a specification standard that has been the quiet source of every re-rating that followed.</p>
+        <div class="founder-pull">One asset class is a fund strategy. Every asset class is a platform discipline. Vantrock is the second.</div>
+      </div>
+    </div>
+
+    <!-- 09 · FOUR PLATFORMS -->
+    <div style="margin-top:100px">
+      <div class="eyebrow reveal"><span class="bar"></span>Four platforms · twenty-one years</div>
+      <h3 class="h2 reveal r-d1" style="color:var(--chalk);max-width:24ch;margin-bottom:32px">A single track record, built across every real-asset class.</h3>
+
+      <div class="four-plats">
+        <div class="plat reveal">
+          <div class="py">2007 – 2014</div>
+          <h5>JSW Severfield</h5>
+          <div class="pd">Steel construction at scale. Pioneered the pre-engineered building standards India later adopted as institutional default across factories, warehouses and power.</div>
+          <div class="pkey">Market leader<span>Factories · warehouses · power</span></div>
+        </div>
+        <div class="plat reveal r-d1">
+          <div class="py">2014 – 2020</div>
+          <h5>Embassy Industrial</h5>
+          <div class="pd">17M sf of Grade-A stock developed across six years — the portfolio that became the template for institutional Indian logistics.</div>
+          <div class="pkey">~$700M exit<span>to Blackstone · 2.5× multiple</span></div>
+        </div>
+        <div class="plat reveal r-d2">
+          <div class="py">2020 – 2025</div>
+          <h5>Welspun One</h5>
+          <div class="pd">22M sf under management, ₹10,500 Cr AUM. Brought a thousand-plus institutional and retail-institutional investors into this asset class.</div>
+          <div class="pkey">1,000+ investors<span>retail-institutional bridge</span></div>
+        </div>
+        <div class="plat now reveal r-d3">
+          <div class="py">2026 — NOW</div>
+          <h5>Vantrock</h5>
+          <div class="pd">The integration. Every prior discipline — industrial, logistics, residential, capital — consolidated under one operating standard, with Saathi and Intelligence as the platform layer.</div>
+          <div class="pkey">Integrated<span>Every real-asset class</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSET-CLASS SPAN -->
+    <div style="margin-top:72px;padding-top:56px;border-top:1px solid rgba(212,168,67,0.18)">
+      <div class="eyebrow reveal"><span class="bar"></span>Asset-class span · the all-rounder record</div>
+      <h3 class="h2 reveal r-d1" style="color:var(--chalk);max-width:26ch;margin-bottom:36px">Built across <em>every real-asset class</em> India will re-underwrite this decade.</h3>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(212,168,67,0.2);border:1px solid rgba(212,168,67,0.2)">
+        <div style="padding:28px 22px;background:var(--navy)" class="reveal">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-bottom:14px">CLASS · 01</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--chalk);margin-bottom:10px;font-weight:400">Offices</div>
+          <p style="font-size:12.5px;line-height:1.65;color:var(--limestone);font-weight:300;margin:0">Grade-A office complexes — developed, leased, stabilised. Institutional counterparties and corporate occupiers.</p>
+        </div>
+        <div style="padding:28px 22px;background:var(--navy)" class="reveal r-d1">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-bottom:14px">CLASS · 02</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--chalk);margin-bottom:10px;font-weight:400">Residential</div>
+          <p style="font-size:12.5px;line-height:1.65;color:var(--limestone);font-weight:300;margin:0">Residential developments — built, sold, stabilised. The operator experience that makes allied plotting credible.</p>
+        </div>
+        <div style="padding:28px 22px;background:var(--navy)" class="reveal r-d2">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-bottom:14px">CLASS · 03</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--chalk);margin-bottom:10px;font-weight:400">Warehouses</div>
+          <p style="font-size:12.5px;line-height:1.65;color:var(--limestone);font-weight:300;margin:0">50M+ sq ft of Grade-A logistics stock delivered across two platforms — the institutional logistics template, authored.</p>
+        </div>
+        <div style="padding:28px 22px;background:var(--navy)" class="reveal r-d3">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-bottom:14px">CLASS · 04</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--chalk);margin-bottom:10px;font-weight:400">Factories</div>
+          <p style="font-size:12.5px;line-height:1.65;color:var(--limestone);font-weight:300;margin:0">Turnkey manufacturing complexes delivered on institutional mandate. The industrial discipline under Vantrock's BTS capability.</p>
+        </div>
+        <div style="padding:28px 22px;background:var(--navy)" class="reveal">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-bottom:14px">CLASS · 05</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--chalk);margin-bottom:10px;font-weight:400">Power Plants</div>
+          <p style="font-size:12.5px;line-height:1.65;color:var(--limestone);font-weight:300;margin:0">Commissioned power assets — the long-duration, capital-intensive discipline that translates directly into Saathi's energy programme.</p>
+        </div>
+        <div style="padding:28px 22px;background:var(--navy)" class="reveal r-d1">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-bottom:14px">CLASS · 06</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--chalk);margin-bottom:10px;font-weight:400">Capital Raised</div>
+          <p style="font-size:12.5px;line-height:1.65;color:var(--limestone);font-weight:300;margin:0">Institutional · sovereign · domestic · retail-institutional · HNI. Raised, managed, and returned across every counterparty class Vantrock will serve.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="eyebrow reveal" style="margin-bottom:32px"><span class="bar"></span>Firsts · counted</div>
+      <div class="tl-row reveal"><div class="ty">’ 05</div><div class="tt">The operator, formed.</div><div class="tb">First institutional-grade construction mandates — factories and industrial complexes built to global specification rather than local norm.</div><div class="tk">Industrial · First</div></div>
+      <div class="tl-row reveal"><div class="ty">2009</div><div class="tt">The first million.</div><div class="tb">One million square feet of Grade-A stock delivered across three states — first Fortune 500 tenant signed on nine-year lease.</div><div class="tk">1M sf · F500</div></div>
+      <div class="tl-row reveal"><div class="ty">2014</div><div class="tt">Sovereign LP access.</div><div class="tb">The first structured sovereign capital into a dedicated Indian logistics platform — governance architecture that became the template.</div><div class="tk">Sovereign · First</div></div>
+      <div class="tl-row reveal"><div class="ty">2019</div><div class="tt">Blackstone validation.</div><div class="tb">Embassy Industrial Parks exited to Blackstone — the market validation that institutional Indian logistics had arrived.</div><div class="tk">~$700M · Exit</div></div>
+      <div class="tl-row reveal"><div class="ty">2021</div><div class="tt">The retail-institutional bridge.</div><div class="tb">1,000+ investors brought into Indian real assets through regulated AIF structures — a first at this scale in this asset class.</div><div class="tk">1,000+ · LPs</div></div>
+      <div class="tl-row reveal"><div class="ty">2026</div><div class="tt">Vantrock.</div><div class="tb">Twenty-one years of development, operation, refurbishment and partnership across every real-asset class — consolidated into a single institutional platform.</div><div class="tk">Integrated · Now</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · RISK + MONITORING -->
+<section class="bone" id="risk">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>10 · Governance · Risk · Monitoring</div>
+        <h2 class="h1">Institutional discipline —<br/><em>at every layer.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Governance is not a chapter at the back of the prospectus. It is the architecture on which the entire platform stands — strategy, structure, land, lease, design, capital, compliance, intelligence. Eight layers, every one audited.</p>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk reveal"><div class="rn">LAYER · 01</div><h5>Strategy Discipline</h5><p>CORE / IN / ADD-ON / OUT filter. What we do. More importantly, what we don't.</p></div>
+      <div class="risk reveal r-d1"><div class="rn">LAYER · 02</div><h5>Structure &amp; Covenants</h5><p>SPV ring-fencing, strict covenants, transparent waterfalls from day one.</p></div>
+      <div class="risk reveal r-d2"><div class="rn">LAYER · 03</div><h5>Land Diligence</h5><p>Title, zoning, infrastructure, access — audited to institutional DD standard.</p></div>
+      <div class="risk reveal r-d3"><div class="rn">LAYER · 04</div><h5>Pre-Leasing Protocols</h5><p>Credit, tenor, asset-liability match, minimum pre-lease gates before capex.</p></div>
+      <div class="risk reveal"><div class="rn">LAYER · 05</div><h5>Design &amp; Build</h5><p>NFPA, FM Global, NBC compliance — the specification that underwrites insurability.</p></div>
+      <div class="risk reveal r-d1"><div class="rn">LAYER · 06</div><h5>Capital Structure</h5><p>LTV 65–70% at SPV level; capital recycled via Sleeve C rather than re-raised.</p></div>
+      <div class="risk reveal r-d2"><div class="rn">LAYER · 07</div><h5>Saathi Compliance</h5><p>EHS, ESG, statutory audits embedded in the operating layer, not retrofitted.</p></div>
+      <div class="risk reveal r-d3"><div class="rn">LAYER · 08</div><h5>AI Monitoring</h5><p>Twelve agents, real-time exception reporting, immutable audit trail per asset.</p></div>
+    </div>
+
+    <!-- Portfolio dashboard teaser -->
+    <div class="dash reveal" style="margin-top:72px">
+      <div class="dash-head">
+        <span>VANTROCK · PORTFOLIO MONITORING · <b>ASSET-LEVEL VIEW</b></span>
+        <span class="lv"><span class="dt"></span>LIVE · Q2 2026</span>
+      </div>
+      <table class="dash-table">
+        <thead>
+          <tr><th>Asset</th><th>Location</th><th>Format</th><th>Pre-Lease</th><th>DSO</th><th>Trajectory</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="nm">Project Alpha</td><td>NCR · Haryana</td><td>Big-Box · Dev</td><td>85%</td><td>28</td><td>Target-band</td><td><span class="tag ok">ON TRACK</span></td></tr>
+          <tr><td class="nm">Project Beta</td><td>MMR · Bhiwandi</td><td>Multi-Storey · Dev</td><td>70%</td><td>45</td><td>Below band</td><td><span class="tag wt">WATCH</span></td></tr>
+          <tr><td class="nm">Gamma Park</td><td>BLR · Hoskote</td><td>Industrial · Rec</td><td>—</td><td>15</td><td>Multiple-led</td><td><span class="tag in">ZONING</span></td></tr>
+          <tr><td class="nm">Delta Hub</td><td>Chennai · Oragadam</td><td>Big-Box · Ref</td><td>100%</td><td>22</td><td>Above band</td><td><span class="tag ok">STABILISED</span></td></tr>
+          <tr><td class="nm">Epsilon One</td><td>Pune · Chakan</td><td>Cold Chain · Dev</td><td>90%</td><td>30</td><td>Target-band</td><td><span class="tag ok">ON TRACK</span></td></tr>
+          <tr><td class="nm">Zeta West</td><td>NCR · Farukhnagar</td><td>Big-Box · Ref</td><td>50%</td><td>60</td><td>Below band</td><td><span class="tag wt">LEASING</span></td></tr>
+          <tr><td class="nm">Eta South</td><td>HYD · Medchal</td><td>Industrial · Rec</td><td>—</td><td>10</td><td>Multiple-led</td><td><span class="tag in">EXITING</span></td></tr>
+          <tr><td class="nm">Theta Cold</td><td>BLR · Nelamangala</td><td>Cold Chain · Dev</td><td>100%</td><td>—</td><td>Target-band</td><td><span class="tag ok">BTS SIGNED</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · BUILD WITH US -->
+<section id="build">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="bar"></span>11 · Build With Us · Land Origination</div>
+        <h2 class="h1">Five ways to originate land.<br/><em>One operating standard.</em></h2>
+      </div>
+      <p class="lead reveal r-d1">Land is the first chapter of every Vantrock asset. We originate it five ways — from clean buy-out to state mandate — modelled transparently against one institutional yardstick. The platform partners; it does not counterparty.</p>
+    </div>
+
+    <div class="build-grid build-grid-5">
+      <div class="bld reveal"><div class="bn">01 · BUY-OUT</div><h4>100% outright acquisition.</h4><p>Clean entry for institutional-grade parcels. Title, possession, and conversion taken outright at agreed consideration — no legacy obligations, no residual co-ownership, reported to our SPV standard from day one. The simplest structure, when the parcel warrants it.</p><div class="bl">Discuss a buy-out →</div></div>
+      <div class="bld reveal r-d1"><div class="bn">02 · JV / JDA</div><h4>Shared upside. Operator control.</h4><p>For landowners who wish to remain in the value creation — joint venture or joint development against a defined share. Vantrock leads the development, compliance and tenanting; the landowner participates in a waterfall modelled against the same institutional yardstick we report to LPs.</p><div class="bl">Request a model →</div></div>
+      <div class="bld reveal r-d2"><div class="bn">03 · LONG LEASEHOLD</div><h4>30–60 year hold. Ground rent.</h4><p>Where buy-out is not preferred and JV is not the intent, a long leasehold structure with agreed ground rent preserves landowner title while giving the platform the tenor required to develop, stabilise, and refurbish at institutional cadence.</p><div class="bl">Model a leasehold →</div></div>
+      <div class="bld reveal r-d3"><div class="bn">04 · STATE MANDATE</div><h4>DMIC · state industrial corps.</h4><p>Mandates originated directly from DMIC, state industrial corporations, and port authorities. Pre-zoned, fast-tracked, infrastructure-enabled parcels on long leasehold or allotment — the public-institutional origin path into plotted parks and BTS manufacturing.</p><div class="bl">Begin a mandate →</div></div>
+      <div class="bld reveal r-d4"><div class="bn">05 · BUY-OUT</div><h4>Portfolio &amp; distressed buy-outs.</h4><p>The second face of the buy-out model. Pre-leased and un-leased Grade-B portfolios, distressed industrial parcels, and family-held estates — acquired outright, re-underwritten, and moved to institutional standard under a single title. Clean entry at portfolio economics.</p><div class="bl">Discuss a portfolio →</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE + CONTACT -->
+<section class="close">
+  <div class="close-inner">
+    <div class="eyebrow reveal"><span style="display:inline-block;width:36px;height:1px;background:var(--gold)"></span>Close</div>
+    <p class="close-quote reveal r-d1">"The moat is not the land. It is not the capital.<br/>It is the <em>combination</em> — and the twenty-one years required to build the discipline that holds it together."</p>
+    <div class="close-cite reveal r-d2">— Founder &amp; CEO · Vantrock</div>
+
+    <div class="contact-panel reveal r-d3">
+      <div class="cpn"><div class="cpk">Build</div><div class="cpv">Development &amp; Partnership</div><a href="/cdn-cgi/l/email-protection#5230273b3e361224333c26203d31397c3b3c"><span class="__cf_email__" data-cfemail="4527302c29210533242b31372a262e6b2c2b">[email&#160;protected]</span></a></div>
+      <div class="cpn"><div class="cpk">Operate</div><div class="cpv">Saathi &amp; Intelligence</div><a href="/cdn-cgi/l/email-protection#7e110e1b0c1f0a1b3e081f100a0c111d15501710"><span class="__cf_email__" data-cfemail="5f302f3a2d3e2b3a1f293e312b2d303c34713631">[email&#160;protected]</span></a></div>
+      <div class="cpn"><div class="cpk">Invest</div><div class="cpv">Institutional Capital</div><a href="/cdn-cgi/l/email-protection#056664756c7164694573646b71776a666e2b6c6b"><span class="__cf_email__" data-cfemail="b9dad8c9d0cdd8d5f9cfd8d7cdcbd6dad297d0d7">[email&#160;protected]</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <span>© Vantrock · 2026</span>
+      <span>Mumbai · Delhi · Chennai · Bengaluru</span>
+      <span>Independent real assets platform · India</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, {passive:true});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
